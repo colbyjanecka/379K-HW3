@@ -1,5 +1,4 @@
 import tensorflow as tf
-import tf_agents
 import argparse
 import time
 from models.tensorflow import vgg_tf_sequential
@@ -46,19 +45,16 @@ loss = "categorical_crossentropy"
 model.compile(tf.keras.optimizers.Adam(), loss, tf.keras.metrics.categorical_accuracy)
 # TODO: Train the model using fit method
 #print(X_train[0].shape, y_train.shape)
-timer = tf_agents.utils.timer.Timer()
+start_time = time.time()
+print("Started at : ", start_time)
 
-timer.start()
 model.fit(X_train[0], y_train, epochs=epochs, batch_size=batch_size)
-timer.stop()
-print("TIMER VALUE (TRAINING): ", timer.value())
+
+print("TIMER VALUE (TRAINING): ", time.time() - start_time)
 
 """
-timer.reset()
-timer.start()
+
 model.fit(X_train[0], y_train, validation_data=(X_test, y_test), epochs=epochs, batch_size=batch_size)
-timer.stop()
-print("TIMER VALUE (TRAINING AND TESTING): ", timer.value())
 """
 
 # TODO: Save the weights of the model in .ckpt format

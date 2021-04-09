@@ -4,7 +4,7 @@ from torchsummary import summary
 import torchvision.datasets as dsets
 import torchvision.transforms as transforms
 import argparse
-import tf_agents
+import time
 from models.pytorch import vgg_pt
 
 
@@ -50,16 +50,14 @@ model = model.cuda()
 # Define your loss and optimizer
 criterion = nn.CrossEntropyLoss()  # Softmax is internally computed.
 optimizer = torch.optim.Adam(model.parameters())
-timer = tf_agents.utils.timer.Timer()
+
+start_time = time.time()
 
 for epoch in range(num_epochs):
     # Training phase loop
     train_correct = 0
     train_total = 0
     train_loss = 0
-
-    # Start Timer
-    timer.start()
 
     # Sets the model in training mode.
     model = model.train()
@@ -88,7 +86,7 @@ for epoch in range(num_epochs):
                                                                              len(train_dataset) // batch_size,
                                                                              train_loss / (batch_idx + 1),
                                                                              100. * train_correct / train_total))
-    timer.stop()
+    """
 
     # Testing phase loop
     test_correct = 0
@@ -114,7 +112,9 @@ for epoch in range(num_epochs):
             test_correct += predicted.eq(labels).sum().item()
     print('Test loss: %.4f Test accuracy: %.2f %%' % (test_loss / (batch_idx + 1),100. * test_correct / test_total))
 
-    print("TIMER VALUE: ", timer.value())
+    """
+
+    print("TRAINING TIME: ", time.time() - start_time)
 
     # TODO: Save the PyTorch model in .pt format
     torch.save(model.state_dict(), "vgg_pt_trained/vgg_pt_trained.pt")
