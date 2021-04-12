@@ -1,8 +1,12 @@
 import tensorflow as tf
 import argparse
 import time
-from models.tensorflow import vgg_tf_sequential
-
+from models.tensorflow import vgg_tf_sequential, mobilenet_tf, vgg_tf
+import os
+import matplotlib.pyplot as plt
+import sys
+import numpy as np
+os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
 #tf.debugging.set_log_device_placement(True)
 #print(tf.config.list_physical_devices('GPU'), "ffff")
 conv_arch = ((1, 64), (1, 128), (2, 256), (2, 512), (2, 512))
@@ -22,33 +26,35 @@ tf.random.set_seed(random_seed)
 
 # TODO: Insert your model here
 model = vgg_tf_sequential.VGG11_Sequential()
-model.build((None, 32, 32, 3))
-model.summary()
+nonsequential_model = vgg_tf.vgg_tf(conv_arch)
+
+
 
 # TODO: Load the training and testing datasets
-df_train, df_test = tf.keras.datasets.cifar10.load_data()
-X_train, y_train = df_train
-X_test, y_test = df_test
+(X_train, y_train), (X_test, y_test) = tf.keras.datasets.cifar10.load_data()
 # TODO: Convert the datasets to contain only float values
-X_test = tf.convert_to_tensor(X_test, dtype=float)
-X_train = tf.convert_to_tensor(X_train, dtype=float)
+X_train = X_train.astype('float32')
+X_test = X_test.astype('float32')
 # TODO: Normalize the datasets
-X_train = tf.linalg.normalize(X_train)
-X_test = tf.linalg.normalize(X_test)
+X_train = X_train/255.0
+X_test = X_test/255.0
+print(np.min(X_test))
 # TODO: Encode the labels into one-hot format
-y_test = tf.one_hot(y_test, 10)
-y_train = tf.one_hot(y_train, 10)
-y_train = tf.squeeze(y_train)
-y_test = tf.squeeze(y_test)
+y_train = tf.keras.utils.to_categorical(y_train)
+y_test = tf.keras.utils.to_categorical(y_test)
+
+
+print(X_train.shape, y_train.shape)
+#print(X_train[0])
+print(y_train)
 # TODO: Configures the model for training using compile method
-loss = "categorical_crossentropy"
-model.compile(tf.keras.optimizers.Adam(), loss, tf.keras.metrics.categorical_accuracy)
+model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=['accuracy'])
 # TODO: Train the model using fit method
-#print(X_train[0].shape, y_train.shape)
+
 start_time = time.time()
 print("Started at : ", start_time)
 
-model.fit(X_train[0], y_train, epochs=epochs, batch_size=batch_size)
+model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=epochs, batch_size=batch_size, verbose=1)
 
 print("TIMER VALUE (TRAINING): ", time.time() - start_time)
 
@@ -58,4 +64,4 @@ model.fit(X_train[0], y_train, validation_data=(X_test, y_test), epochs=epochs, 
 """
 
 # TODO: Save the weights of the model in .ckpt format
-model.save_weights("vgg_tf_trained/vgg_tf_trained")
+nonsequential_model.save_weights("vgg_tf_trained/vgg_tf_trained")
