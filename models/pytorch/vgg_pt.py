@@ -5,9 +5,9 @@ cfg = {
 }
 
 
-class VGG(nn.Module):
+class VGG_pt(nn.Module):
     def __init__(self, vgg_name="VGG11"):
-        super(VGG, self).__init__()
+        super(VGG_pt, self).__init__()
         self.features = self._make_layers(cfg[vgg_name])
         self.classifier = nn.Sequential(
             nn.Linear(512, 512),
