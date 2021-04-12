@@ -44,7 +44,7 @@ test_loader = torch.utils.data.DataLoader(dataset=test_dataset, batch_size=batch
 
 # TODO: Get VGG11 model
 model = vgg_pt.VGG_pt()
-
+model.load_state_dict(torch.load("vgg_pt_trained/vgg_pt_trained.pt"))
 # TODO: Put the model on the GPU
 model = model.cuda()
 # Define your loss and optimizer

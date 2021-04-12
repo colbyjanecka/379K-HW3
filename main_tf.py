@@ -52,15 +52,16 @@ model.compile(tf.keras.optimizers.Adam(learning_rate=0.0001), loss="categorical_
 
 start_time = time.time()
 print("Started at : ", start_time)
-
-model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=epochs, batch_size=batch_size, verbose=1)
+"""
+model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size, verbose=1)
 
 print("TIMER VALUE (TRAINING): ", time.time() - start_time)
 
 """
 
-model.fit(X_train[0], y_train, validation_data=(X_test, y_test), epochs=epochs, batch_size=batch_size)
-"""
+model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=epochs, batch_size=batch_size, verbose=1)
+
+print("TIMER VALUE (TRAINING and VALIDATION): ", time.time() - start_time)
 
 # TODO: Save the weights of the model in .ckpt format
 model.save_weights("vgg_tf_trained/vgg_tf_trained")

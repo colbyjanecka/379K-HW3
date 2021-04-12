@@ -5,4 +5,6 @@ from models.tensorflow import vgg_tf_sequential
 
 model = vgg_tf_sequential.VGG11_Sequential()
 
-model.load_weights("HW3_files/HW3_files/vgg_tf_trained/vgg_tf_trained.ckpt")
+model.load_weights("vgg_tf_trained/vgg_tf_trained")
+
+model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=epochs, batch_size=batch_size, verbose=1)
