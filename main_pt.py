@@ -86,7 +86,6 @@ for epoch in range(num_epochs):
                                                                              len(train_dataset) // batch_size,
                                                                              train_loss / (batch_idx + 1),
                                                                              100. * train_correct / train_total))
-    """
 
     # Testing phase loop
     test_correct = 0
@@ -111,8 +110,6 @@ for epoch in range(num_epochs):
             test_total += labels.size(0)
             test_correct += predicted.eq(labels).sum().item()
     print('Test loss: %.4f Test accuracy: %.2f %%' % (test_loss / (batch_idx + 1),100. * test_correct / test_total))
-
-    """
 
     print("TRAINING TIME: ", time.time() - start_time)
 

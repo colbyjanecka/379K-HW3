@@ -7,10 +7,9 @@ from models.tensorflow import vgg_tf_sequential, mobilenet_tf
 import keras2onnx
 
 def export_pt_to_onnx(model, outputFileName):
-    x = torch.randn(1, 3, 32, 32, requires_grad=True)
-    torch_out = model(x)
+    dummy_input = torch.randn(1, 3, 32, 32, requires_grad=True)
     outputPath = "models/onnx/" + outputFileName + ".onnx"
-    torch.onnx.export(model, x, outputPath,  export_params=True,  opset_version=10)
+    torch.onnx.export(model, dummy_input, outputPath,  export_params=True,  opset_version=10)
 
 def export_tf_to_onnx(model, outputPath):
     onnx_model = keras2onnx.convert_keras(model, model.name)

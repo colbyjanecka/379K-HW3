@@ -3,21 +3,23 @@ import onnxruntime
 from tqdm import tqdm
 import os
 from PIL import Image
+import argparse
 
 # TODO: add argument parser
-parser = argparse.ArgumentParser(description='EE379K HW3 - Starter Deployment code')
+parser = argparse.ArgumentParser(description='EE379K HW3 - ONNX Deployment code')
 # TODO: add one argument for selecting PyTorch or TensorFlow option of the code
 parser.add_argument('--framework', type=str, help='Framework to use. Can be PyTorch or Tensorflow (pt or tf respectively)')
 # TODO: add one argument for selecting VGG or MobileNet-v1 models
 parser.add_argument('--model', type=str, help='Model to use. Can be VGG or MobileNet-v1 (vgg or mbnv1 respectively)')
 # TODO: Modify the rest of the code to use those arguments correspondingly
 args = parser.parse_args()
-framework = args.framework
-model = args.model
+framework = str(args.framework)
+model = str(args.model)
+
 onnx_model_name = model + "_" + framework + ".onnx" 
 
 # Create Inference session using ONNX runtime
-sess = onnxruntime.InferenceSession(onnx_model_name)
+sess = onnxruntime.InferenceSession("models/onnx/" + onnx_model_name)
 
 # Get the input name for the ONNX model
 input_name = sess.get_inputs()[0].name
@@ -34,10 +36,13 @@ std = np.array((0.2023, 0.1994, 0.2010))
 # Label names for CIFAR10 Dataset
 label_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
+total = 0
+total_correct = 0
+
 # The test_deployment folder contains all 10.000 images from the testing dataset of CIFAR10 in .png format
-for filename in tqdm(os.listdir("HW3_files/test_deployment")):
+for filename in tqdm(os.listdir("test_deployment")):
     # Take each image, one by one, and make inference
-    with Image.open(os.path.join("HW3_files/test_deployment", filename)).resize((32, 32)) as img:
+    with Image.open(os.path.join("test_deployment", filename)).resize((32, 32)) as img:
         print("Image shape:", np.float32(img).shape)
 
         if framework == 'pt':
@@ -63,3 +68,14 @@ for filename in tqdm(os.listdir("HW3_files/test_deployment")):
 
         # Get the label of the predicted class
         pred_class = label_names[top_prediction]
+
+        true_label = filename.split('_')[1].split('.')[0]
+
+        if pred_class == true_label:
+            total_correct = total_correct + 1
+        total = total + 1
+
+print(total_correct/total*100)
+
+    
+
