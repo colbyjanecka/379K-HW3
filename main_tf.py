@@ -3,7 +3,6 @@ import argparse
 import time
 from models.tensorflow import vgg_tf_sequential, mobilenet_tf, vgg_tf
 import os
-import matplotlib.pyplot as plt
 import sys
 import numpy as np
 os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
