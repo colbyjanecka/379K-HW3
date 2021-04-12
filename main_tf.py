@@ -47,7 +47,7 @@ print(X_train.shape, y_train.shape)
 #print(X_train[0])
 print(y_train)
 # TODO: Configures the model for training using compile method
-model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=['accuracy'])
+model.compile(tf.keras.optimizers.Adam(learning_rate=0.0001), loss="categorical_crossentropy", metrics=['accuracy'])
 # TODO: Train the model using fit method
 
 start_time = time.time()
@@ -63,4 +63,5 @@ model.fit(X_train[0], y_train, validation_data=(X_test, y_test), epochs=epochs, 
 """
 
 # TODO: Save the weights of the model in .ckpt format
-nonsequential_model.save_weights("vgg_tf_trained/vgg_tf_trained")
+model.save_weights("vgg_tf_trained/vgg_tf_trained")
+
