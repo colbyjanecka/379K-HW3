@@ -1,0 +1,42 @@
+
+Lmod is automatically replacing "python2/2.7.16" with "python3/3.7.0".
+
+2021-04-09 13:12:44.621880: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.1
+2021-04-09 13:13:30.408092: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+2021-04-09 13:13:30.519805: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 0 with properties: 
+pciBusID: 0000:03:00.0 name: GeForce GTX 1080 Ti computeCapability: 6.1
+coreClock: 1.582GHz coreCount: 28 deviceMemorySize: 10.92GiB deviceMemoryBandwidth: 451.17GiB/s
+2021-04-09 13:13:30.520599: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.1
+2021-04-09 13:13:30.600793: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcublas.so.10
+2021-04-09 13:13:30.649335: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcufft.so.10
+2021-04-09 13:13:30.662257: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcurand.so.10
+2021-04-09 13:13:30.750966: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcusolver.so.10
+2021-04-09 13:13:30.762934: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcusparse.so.10
+2021-04-09 13:13:30.918263: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudnn.so.7
+2021-04-09 13:13:30.929121: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1858] Adding visible gpu devices: 0
+2021-04-09 13:13:31.007562: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2021-04-09 13:13:31.693553: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2099960000 Hz
+2021-04-09 13:13:31.712580: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5606a80 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-04-09 13:13:31.712660: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2021-04-09 13:13:31.945636: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x56730c0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2021-04-09 13:13:31.945763: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): GeForce GTX 1080 Ti, Compute Capability 6.1
+2021-04-09 13:13:31.958887: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 0 with properties: 
+pciBusID: 0000:03:00.0 name: GeForce GTX 1080 Ti computeCapability: 6.1
+coreClock: 1.582GHz coreCount: 28 deviceMemorySize: 10.92GiB deviceMemoryBandwidth: 451.17GiB/s
+2021-04-09 13:13:31.958953: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.1
+2021-04-09 13:13:31.958990: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcublas.so.10
+2021-04-09 13:13:31.959014: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcufft.so.10
+2021-04-09 13:13:31.959037: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcurand.so.10
+2021-04-09 13:13:31.959059: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcusolver.so.10
+2021-04-09 13:13:31.959082: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcusparse.so.10
+2021-04-09 13:13:31.959105: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudnn.so.7
+2021-04-09 13:13:31.960747: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1858] Adding visible gpu devices: 0
+2021-04-09 13:13:31.998881: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.1
+2021-04-09 13:13:38.843714: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1257] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-04-09 13:13:38.843830: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1263]      0 
+2021-04-09 13:13:38.844968: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1276] 0:   N 
+2021-04-09 13:13:38.860337: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1402] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10273 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1080 Ti, pci bus id: 0000:03:00.0, compute capability: 6.1)
+2021-04-09 13:14:02.008122: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcublas.so.10
+2021-04-09 13:14:03.009064: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudnn.so.7
+WARNING:tensorflow:Callbacks method `on_train_batch_end` is slow compared to the batch time (batch time: 0.0078s vs `on_train_batch_end` time: 0.0119s). Check your callbacks.

@@ -1,0 +1,61 @@
+
+Lmod is automatically replacing "python2/2.7.16" with "python3/3.7.0".
+
+2021-04-08 23:07:27.809445: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.1
+2021-04-08 23:07:30.940409: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.1
+Traceback (most recent call last):
+  File "main_tf.py", line 2, in <module>
+    import tf_agents
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tf_agents/__init__.py", line 70, in <module>
+    from tf_agents import agents
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tf_agents/agents/__init__.py", line 17, in <module>
+    from tf_agents.agents import data_converter
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tf_agents/agents/data_converter.py", line 27, in <module>
+    from tf_agents.trajectories import policy_step
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tf_agents/trajectories/__init__.py", line 18, in <module>
+    from tf_agents.trajectories import policy_step
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tf_agents/trajectories/policy_step.py", line 25, in <module>
+    from tf_agents.typing import types
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tf_agents/typing/types.py", line 29, in <module>
+    import tensorflow_probability as tfp
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tensorflow_probability/__init__.py", line 20, in <module>
+    from tensorflow_probability import substrates
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tensorflow_probability/substrates/__init__.py", line 21, in <module>
+    from tensorflow_probability.python.internal import all_util
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tensorflow_probability/python/__init__.py", line 142, in <module>
+    dir(globals()[pkg_name])  # Forces loading the package from its lazy loader.
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tensorflow_probability/python/internal/lazy_loader.py", line 61, in __dir__
+    module = self._load()
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tensorflow_probability/python/internal/lazy_loader.py", line 41, in _load
+    self._on_first_access()
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tensorflow_probability/python/__init__.py", line 68, in _validate_tf_environment
+    present=tf.__version__))
+ImportError: This version of TensorFlow Probability requires TensorFlow version >= 2.4; Detected an installation of version 2.3.1. Please upgrade TensorFlow to proceed.
+Traceback (most recent call last):
+  File "main_pt.py", line 7, in <module>
+    import tf_agents
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tf_agents/__init__.py", line 70, in <module>
+    from tf_agents import agents
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tf_agents/agents/__init__.py", line 17, in <module>
+    from tf_agents.agents import data_converter
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tf_agents/agents/data_converter.py", line 27, in <module>
+    from tf_agents.trajectories import policy_step
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tf_agents/trajectories/__init__.py", line 18, in <module>
+    from tf_agents.trajectories import policy_step
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tf_agents/trajectories/policy_step.py", line 25, in <module>
+    from tf_agents.typing import types
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tf_agents/typing/types.py", line 29, in <module>
+    import tensorflow_probability as tfp
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tensorflow_probability/__init__.py", line 20, in <module>
+    from tensorflow_probability import substrates
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tensorflow_probability/substrates/__init__.py", line 21, in <module>
+    from tensorflow_probability.python.internal import all_util
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tensorflow_probability/python/__init__.py", line 142, in <module>
+    dir(globals()[pkg_name])  # Forces loading the package from its lazy loader.
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tensorflow_probability/python/internal/lazy_loader.py", line 61, in __dir__
+    module = self._load()
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tensorflow_probability/python/internal/lazy_loader.py", line 41, in _load
+    self._on_first_access()
+  File "/work/07979/cjanecka/maverick2/HW3_virtualenv/lib/python3.7/site-packages/tensorflow_probability/python/__init__.py", line 68, in _validate_tf_environment
+    present=tf.__version__))
+ImportError: This version of TensorFlow Probability requires TensorFlow version >= 2.4; Detected an installation of version 2.3.1. Please upgrade TensorFlow to proceed.
