@@ -1,2 +1,4 @@
+.idea/*
+.vscode/*
 *.png
 *.data-00000-of-00001*
