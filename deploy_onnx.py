@@ -2,8 +2,10 @@ import numpy as np
 import onnxruntime
 from tqdm import tqdm
 import os
+import time
 from PIL import Image
 import argparse
+import psutil
 
 # TODO: add argument parser
 parser = argparse.ArgumentParser(description='EE379K HW3 - ONNX Deployment code')
@@ -38,6 +40,12 @@ label_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', '
 
 total = 0
 total_correct = 0
+
+pid = os.getpid()
+py = psutil.Process(pid)
+
+start_time = time.time()
+print("Started inference at : ", start_time)
 
 # The test_deployment folder contains all 10.000 images from the testing dataset of CIFAR10 in .png format
 for filename in tqdm(os.listdir("test_deployment")):
@@ -75,7 +83,12 @@ for filename in tqdm(os.listdir("test_deployment")):
             total_correct = total_correct + 1
         total = total + 1
 
+
+        dict(psutil.virtual_memory()._asdict())
+        print('memory % used:', psutil.virtual_memory().used)
+
 print(total_correct/total*100)
+print("Inference Time: ", time.time() - start_time)
 
     
 
