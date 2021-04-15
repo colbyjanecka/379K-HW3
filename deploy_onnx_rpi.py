@@ -57,6 +57,7 @@ out_file.write(header)
 out_file.write("\n")
 SP2_tel = tel.Telnet("192.168.4.1")
 total_power = 0
+true_start = time.time()
 
 # The test_deployment folder contains all 10.000 images from the testing dataset of CIFAR10 in .png format
 for filename in tqdm(os.listdir("test_deployment")):
@@ -108,6 +109,21 @@ for filename in tqdm(os.listdir("test_deployment")):
     out_ln = fmt_str.format(time_stamp, total_power, cpu_temp)    
     out_file.write(out_ln)
     out_file.write("\n")
+
+while ((time.time() - true_start) < 1200):  
+    last_time = time.time()#time_stamp
+    total_power = getTelnetPower(SP2_tel, total_power)
+    
+    cpu_temp = gpiozero.CPUTemperature().temperature
+    
+    time_stamp = last_time
+    fmt_str = "{}\t"*3
+    out_ln = fmt_str.format(time_stamp, total_power, cpu_temp)    
+    out_file.write(out_ln)
+    out_file.write("\n")
+    elapsed = time.time() - last_time
+    DELAY = 0.63
+    time.sleep(max(0, DELAY - elapsed))
 
 print(total_correct/total*100)
 print("Total Inference Time: ", total_time)

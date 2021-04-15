@@ -23,8 +23,6 @@ args = parser.parse_args()
 framework = str(args.framework)
 model = str(args.model)
 
-total_time = 0
-
 onnx_model_name = model + "_" + framework + ".onnx" 
 
 # Create Inference session using ONNX runtime
@@ -49,6 +47,7 @@ total = 0
 total_correct = 0
 count = 0
 cumulative_memory = 0
+total_time = 0
 
 # The test_deployment folder contains all 10.000 images from the testing dataset of CIFAR10 in .png format
 for filename in tqdm(os.listdir("test_deployment")):
@@ -100,6 +99,3 @@ for filename in tqdm(os.listdir("test_deployment")):
 print(total_correct/total*100)
 print("Total Inference Time: ", total_time)
 print('inference memory usage:', cumulative_memory/count)
-
-    
-
