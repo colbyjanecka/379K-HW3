@@ -6,6 +6,8 @@ import time
 from PIL import Image
 import argparse
 import psutil
+import telnetlib as tel
+from measurement import getTelnetPower, getTemps
 
 dict(psutil.virtual_memory()._asdict())
 pre_inference_memory = psutil.virtual_memory().used/1000000
@@ -45,10 +47,15 @@ std = np.array((0.2023, 0.1994, 0.2010))
 # Label names for CIFAR10 Dataset
 label_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
-total = 0
-total_correct = 0
-count = 0
-cumulative_memory = 0
+# create a text file to log the results
+out_fname = 'mc1_log_' + model + "_" + framework + '.txt'
+header = "time W temp4 temp5 temp6 temp7"
+header = "\t".join( header.split(' ') )
+out_file = open(out_fname, 'w')
+out_file.write(header)
+out_file.write("\n")
+SP2_tel = tel.Telnet("192.168.4.1")
+total_power = 0
 
 # The test_deployment folder contains all 10.000 images from the testing dataset of CIFAR10 in .png format
 for filename in tqdm(os.listdir("test_deployment")):
@@ -88,14 +95,17 @@ for filename in tqdm(os.listdir("test_deployment")):
 
         true_label = filename.split('_')[1].split('.')[0]
 
-        if pred_class == true_label:
-            total_correct = total_correct + 1
-        total = total + 1
 
-        dict(psutil.virtual_memory()._asdict())
-        cumulative_memory = cumulative_memory + (psutil.virtual_memory().used/1000000 - pre_inference_memory)
-        count = count + 1
-        #print('current memory usage - Pre-Inference Memory Usage:', psutil.virtual_memory().used/1000000 - pre_inference_memory, 'MB')
+    # after inference, save the statistics for cpu usage and power consumption
+    last_time = time.time()#time_stamp
+    total_power = getTelnetPower(SP2_tel, total_power)
+    temps = getTemps()
+    time_stamp = last_time
+    fmt_str = "{}\t"*6
+    out_ln = fmt_str.format(time_stamp, total_power, \
+			temps[0], temps[1], temps[2], temps[3])    
+    out_file.write(out_ln)
+    out_file.write("\n")
 
 print(total_correct/total*100)
 print("Total Inference Time: ", total_time)
